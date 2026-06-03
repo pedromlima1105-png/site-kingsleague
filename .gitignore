@@ -1,0 +1,13 @@
+# Arquivos grandes de vídeo e zip (excedem limite do GitHub 100MB)
+*.mp4
+*.zip
+*.rar
+*.7z
+
+# Arquivos do sistema
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Pasta antiga de uniformes (zip extraído)
+public/UNIFORMES-20260531T143832Z-3-001/

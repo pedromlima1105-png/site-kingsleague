@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PatchKingsleague — Patches e Mods para Kings League</title>
+  <meta name="description" content="Kings League Patch — Elencos atualizados, uniformes oficiais, escudos, faces realistas e toda a identidade da Kings League dentro do seu jogo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg: #080808;
+      --bg2: #0d0d0d;
+      --bg3: #111111;
+      --yellow: #FFD600;
+      --yellow2: #F0C800;
+      --yellow-dim: #b89a00;
+      --white: #f5f5f0;
+      --gray: #888880;
+      --border: rgba(255, 214, 0, 0.2);
+      --glass: rgba(255,255,255,0.03);
+      --glow-yellow: 0 0 18px rgba(255,214,0,0.6), 0 0 44px rgba(255,214,0,0.22);
+      --glow-yellow-sm: 0 0 10px rgba(255,214,0,0.4);
+      --font-display: 'Orbitron', sans-serif;
+      --font-body: 'Sora', sans-serif;
+      --nav-h: 72px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================
+       UTILITY
+    ============================================ */
+    .neon-text-yellow { color: var(--yellow); text-shadow: var(--glow-yellow); }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 540px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-header .section-sub { margin: 0 auto; }
+
+    section { padding: 96px 0; position: relative; }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,214,0,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,214,0,0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+    }
+    #navbar.scrolled {
+      background: rgba(8,8,8,0.94);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(255,214,0,0.25);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo span { color: var(--yellow); text-shadow: var(--glow-yellow); }
+
+    .nav-logo-img {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,214,0,0.4);
+      box-shadow: var(--glow-yellow-sm);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray);
+      transition: color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    #cart-btn {
+      position: relative;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #cart-btn:hover {
+      border-color: var(--yellow);
+      box-shadow: var(--glow-yellow-sm);
+    }
+    #cart-badge {
+      position: absolute;
+      top: -7px; right: -7px;
+      background: var(--yellow);
+      color: #000;
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    #cart-badge.visible { opacity: 1; transform: scale(1); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    #mobile-nav {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(8,8,8,0.99);
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      flex-direction: column;
+      gap: 0;
+      padding: 20px 0;
+    }
+    #mobile-nav a {
+      display: block;
+      padding: 14px 28px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--gray);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: color 0.2s, background 0.2s;
+    }
+    #mobile-nav a:hover { color: var(--yellow); background: rgba(255,214,0,0.04); }
+    #mobile-nav.open { display: flex; }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    #inicio {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 40%, rgba(255,214,0,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 15% 75%, rgba(255,214,0,0.05) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,214,0,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,214,0,0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridScroll 20s linear infinite;
+    }
+    @keyframes gridScroll {
+      from { background-position: 0 0; }
+      to { background-position: 60px 60px; }
+    }
+
+    .hero-scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.07) 3px,
+        rgba(0,0,0,0.07) 4px
+      );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: calc(var(--nav-h) + 48px) 0 96px;
+      max-width: 760px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,214,0,0.07);
+      border: 1px solid rgba(255,214,0,0.35);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-bottom: 28px;
+      animation: fadeSlideUp 0.6s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--yellow);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--yellow);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      animation: fadeSlideUp 0.7s 0.1s ease both;
+    }
+    .hero-title .line2 {
+      display: block;
+      background: linear-gradient(90deg, var(--yellow), #fff5a0, var(--yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title .glitch { animation: glitch 4s ease infinite; }
+
+    @keyframes glitch {
+      0%, 92%, 100% { text-shadow: none; transform: none; }
+      93% { transform: translateX(-3px); filter: hue-rotate(20deg); }
+      94% { transform: translateX(3px); }
+      95% { transform: translateX(-2px); filter: hue-rotate(-20deg); }
+      96% { transform: none; filter: none; }
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--gray);
+      max-width: 560px;
+      margin-bottom: 40px;
+      animation: fadeSlideUp 0.7s 0.2s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      animation: fadeSlideUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow);
+      color: #000;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 24px rgba(255,214,0,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(255,214,0,0.65);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      box-shadow: var(--glow-yellow-sm);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 0.7s 0.4s ease both;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Hero image side */
+    .hero-image-wrap {
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 440px; height: 440px;
+      animation: orbFloat 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero-image-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgba(255,214,0,0.4);
+      box-shadow: 0 0 60px rgba(255,214,0,0.3);
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(-50%) translateY(0px); }
+      50% { transform: translateY(-50%) translateY(-15px); }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       HERO GALLERY STRIP (Bola + Chuteiras)
+    ============================================ */
+    #galeria-hero {
+      background: var(--bg2);
+      padding: 60px 0;
+      position: relative;
+    }
+    .galeria-strip-title {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .galeria-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .strip-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0a0a0a;
+      cursor: pointer;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .strip-item:hover {
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--yellow);
+      box-shadow: 0 8px 32px rgba(255,214,0,0.2);
+    }
+    .strip-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .strip-item:hover img { transform: scale(1.05); }
+    .strip-caption {
+      padding: 10px 12px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* ============================================
+       DIFFERENTIALS
+    ============================================ */
+    #diferenciais {
+      background: var(--bg);
+      position: relative;
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .diff-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .diff-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--yellow), #fff5a0, var(--yellow));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .diff-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,214,0,0.45);
+      box-shadow: 0 8px 40px rgba(255,214,0,0.1);
+    }
+    .diff-card:hover::before { opacity: 1; }
+
+    .diff-icon {
+      width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,214,0,0.1);
+      border: 1px solid rgba(255,214,0,0.25);
+      border-radius: 10px;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .diff-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .diff-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* VER MAIS BUTTON */
+    .btn-ver-mais {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--yellow);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 8px;
+      border: 2px solid var(--yellow);
+      cursor: pointer;
+      transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+      box-shadow: 0 0 18px rgba(255,214,0,0.2);
+    }
+    .btn-ver-mais:hover {
+      background: rgba(255,214,0,0.1);
+      box-shadow: 0 0 36px rgba(255,214,0,0.45);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+       PATCH GALLERY MODAL
+    ============================================ */
+    #gallery-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      z-index: 1300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #gallery-overlay.open { opacity: 1; pointer-events: all; }
+
+    .gallery-modal {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+    #gallery-overlay.open .gallery-modal { transform: scale(1); }
+
+    .gallery-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .gallery-modal-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .gallery-close {
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--gray);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .gallery-close:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: #0a0a0a;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.04);
+      border-color: var(--yellow);
+      box-shadow: 0 0 20px rgba(255,214,0,0.25);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-caption {
+      padding: 10px 12px;
+      font-size: 0.75rem;
+      font-family: var(--font-display);
+      color: var(--gray);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    /* ============================================
+       UNIFORMES CATALOG SECTION
+    ============================================ */
+    #uniformes {
+      background: var(--bg2);
+      position: relative;
+    }
+
+    .team-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .team-tab {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .team-tab:hover { color: var(--white); border-color: rgba(255,214,0,0.4); }
+    .team-tab.active {
+      background: var(--yellow);
+      color: #000;
+      border-color: var(--yellow);
+      box-shadow: 0 0 18px rgba(255,214,0,0.4);
+    }
+
+    .team-panel { display: none; }
+    .team-panel.active { display: block; }
+
+    .team-panel-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .uniforme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .uniforme-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0a0a0a;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .uniforme-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--yellow);
+      box-shadow: 0 8px 30px rgba(255,214,0,0.2);
+    }
+    .uniforme-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .uniforme-label {
+      padding: 10px 14px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    /* ============================================
+       TÉCNICOS SECTION
+    ============================================ */
+    #tecnicos {
+      background: var(--bg);
+      position: relative;
+    }
+
+    .tecnicos-video-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(255,214,0,0.1);
+    }
+    .tecnicos-video-wrap video {
+      width: 100%;
+      display: block;
+      max-height: 500px;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* ============================================
+       CHAMPIONSHIPS
+    ============================================ */
+    #campeonatos {
+      background: var(--bg2);
+      position: relative;
+    }
+
+    .champ-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .champ-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .champ-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(255,214,0,0.07) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .champ-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,214,0,0.4);
+      box-shadow: 0 6px 30px rgba(255,214,0,0.1);
+    }
+    .champ-card:hover::after { opacity: 1; }
+
+    .champ-emblem {
+      width: 64px; height: 64px;
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+      background: rgba(8,8,8,0.8);
+      border-radius: 50%;
+      border: 2px solid var(--border);
+    }
+
+    .champ-name {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .champ-status {
+      font-size: 0.72rem;
+      color: var(--yellow);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .champ-status.active::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--yellow);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* ============================================
+       PLANS
+    ============================================ */
+    #planos {
+      background: var(--bg);
+      position: relative;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .plan-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .plan-card:hover { transform: translateY(-6px); }
+
+    .plan-card.featured {
+      border-color: var(--yellow);
+      background: rgba(255,214,0,0.05);
+      box-shadow: 0 0 40px rgba(255,214,0,0.15), inset 0 1px 0 rgba(255,214,0,0.25);
+      transform: scale(1.02);
+    }
+    .plan-card.featured:hover {
+      transform: scale(1.02) translateY(-6px);
+      box-shadow: 0 12px 60px rgba(255,214,0,0.28), inset 0 1px 0 rgba(255,214,0,0.25);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -1px; right: 28px;
+      background: var(--yellow);
+      color: #000;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 0 0 8px 8px;
+      box-shadow: var(--glow-yellow-sm);
+    }
+
+    .plan-name {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .plan-currency { font-size: 1rem; font-weight: 600; color: var(--white); }
+    .plan-amount {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--yellow);
+    }
+    .plan-period { font-size: 0.8rem; color: var(--gray); margin-bottom: 24px; }
+
+    .plan-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 24px 0;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+    .plan-features li i { color: var(--yellow); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+    .plan-features li span { color: var(--white); }
+
+    .btn-add-cart {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 8px;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-add-cart.normal {
+      background: rgba(255,214,0,0.08);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+    }
+    .btn-add-cart.normal:hover { background: rgba(255,214,0,0.18); box-shadow: 0 0 20px rgba(255,214,0,0.25); }
+    .btn-add-cart.highlighted {
+      background: var(--yellow);
+      color: #000;
+      box-shadow: 0 0 24px rgba(255,214,0,0.45);
+    }
+    .btn-add-cart.highlighted:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(255,214,0,0.65); }
+    .btn-add-cart:active { transform: scale(0.98); }
+
+    /* ============================================
+       CART SIDEBAR
+    ============================================ */
+    #cart-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1099;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #cart-overlay.open { opacity: 1; pointer-events: all; }
+
+    #cart-sidebar {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(420px, 100vw);
+      height: 100vh;
+      background: var(--bg3);
+      border-left: 1px solid var(--border);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #cart-sidebar.open { transform: translateX(0); }
+
+    .cart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 24px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cart-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; }
+    .cart-close {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 6px;
+      cursor: pointer; background: transparent; color: var(--gray);
+      font-size: 1rem; transition: color 0.2s, border-color 0.2s;
+    }
+    .cart-close:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
+    .cart-body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+    .cart-empty {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100%; gap: 14px; color: var(--gray); text-align: center;
+    }
+    .cart-empty i { font-size: 2.5rem; color: var(--border); }
+    .cart-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .cart-item-icon {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,214,0,0.1); border: 1px solid rgba(255,214,0,0.25);
+      border-radius: 8px; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+    .cart-item-sub { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+    .cart-item-price { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--yellow); }
+    .cart-item-remove {
+      background: transparent; border: none; color: var(--gray);
+      cursor: pointer; font-size: 0.9rem; padding: 4px; transition: color 0.2s;
+    }
+    .cart-item-remove:hover { color: #ff4466; }
+    .cart-footer { padding: 20px 24px; border-top: 1px solid var(--border); }
+    .cart-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+    .cart-total-label { font-size: 0.85rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; }
+    .cart-total-value { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: var(--yellow); }
+
+    .btn-whatsapp {
+      width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px; background: #25D366; color: #fff;
+      font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 10px; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 24px rgba(37,211,102,0.3);
+    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(37,211,102,0.5); }
+    .cart-note { font-size: 0.72rem; color: var(--gray); text-align: center; margin-top: 10px; line-height: 1.5; }
+
+    /* ============================================
+       FLOATING WHATSAPP
+    ============================================ */
+    #float-wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 998;
+      width: 58px; height: 58px;
+      background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: #fff; cursor: pointer;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.5);
+      text-decoration: none; animation: floatWA 3s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+    #float-wa:hover { transform: scale(1.1); }
+    @keyframes floatWA {
+      0%, 100% { box-shadow: 0 4px 24px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 4px 40px rgba(37,211,102,0.8); }
+    }
+
+    /* ============================================
+       FAQ
+    ============================================ */
+    #faq { background: var(--bg); position: relative; }
+
+    .faq-list {
+      max-width: 720px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .faq-item {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden; transition: border-color 0.3s;
+    }
+    .faq-item.open { border-color: rgba(255,214,0,0.5); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; cursor: pointer;
+      font-size: 0.95rem; font-weight: 600; color: var(--white);
+      gap: 16px; user-select: none;
+    }
+    .faq-q i { color: var(--yellow); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-q i { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-a-inner { padding: 0 24px 20px; font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 32px;
+    }
+
+    .footer-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap; margin-bottom: 48px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 900;
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-logo span { color: var(--yellow); text-shadow: var(--glow-yellow); }
+    .footer-logo-img {
+      width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
+      border: 2px solid rgba(255,214,0,0.4);
+    }
+    .footer-tagline { font-size: 0.85rem; color: var(--gray); max-width: 240px; line-height: 1.6; }
+
+    .footer-socials { display: flex; gap: 12px; margin-top: 20px; }
+    .social-btn {
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 8px;
+      color: var(--gray); font-size: 0.95rem;
+      transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      color: var(--yellow); border-color: var(--yellow);
+      box-shadow: 0 0 12px rgba(255,214,0,0.2);
+    }
+
+    .footer-links h4 {
+      font-family: var(--font-display); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links ul a { font-size: 0.85rem; color: var(--gray); transition: color 0.2s; }
+    .footer-links ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 0.78rem; color: var(--gray); }
+    .footer-tagline-bottom {
+      font-family: var(--font-display); font-size: 0.7rem;
+      letter-spacing: 0.1em; color: var(--yellow); text-transform: uppercase;
+    }
+
+    /* ============================================
+       LIGHTBOX
+    ============================================ */
+    #lightbox-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.96); z-index: 1500;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    #lightbox-overlay.open { opacity: 1; pointer-events: all; }
+    #lightbox-img {
+      max-width: 90vw; max-height: 88vh;
+      object-fit: contain; border-radius: 8px;
+      box-shadow: 0 0 60px rgba(255,214,0,0.2);
+      transition: opacity 0.15s;
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; width: 44px; height: 44px; border-radius: 50%;
+      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; width: 50px; height: 50px; border-radius: 50%;
+      font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s; z-index: 2;
+    }
+    .lightbox-nav:hover { background: rgba(255,214,0,0.2); border-color: var(--yellow); }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+
+    /* ============================================
+       HOW IT WORKS MODAL
+    ============================================ */
+    #how-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(6px);
+      z-index: 1200;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    #how-overlay.open { opacity: 1; pointer-events: all; }
+    .how-modal {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 16px;
+      padding: 40px; max-width: 560px; width: 100%;
+      transform: scale(0.95); transition: transform 0.3s;
+    }
+    #how-overlay.open .how-modal { transform: scale(1); }
+    .how-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 28px; }
+    .how-step { display: flex; gap: 18px; margin-bottom: 22px; }
+    .how-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--yellow); color: #000;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: var(--glow-yellow-sm);
+    }
+    .how-step-text h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
+    .how-step-text p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+    .how-close { margin-top: 28px; width: 100%; }
+
+    /* ============================================
+       TOAST
+    ============================================ */
+    #toast {
+      position: fixed; bottom: 100px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--yellow); color: #000;
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 12px 24px; border-radius: 100px; z-index: 2000;
+      opacity: 0; transition: opacity 0.3s, transform 0.3s; white-space: nowrap;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ============================================
+       SCROLL REVEAL
+    ============================================ */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-image-wrap { display: none; }
+      .plans-grid { grid-template-columns: 1fr; }
+      .plan-card.featured { transform: scale(1); }
+    }
+    @media (max-width: 600px) {
+      section { padding: 64px 0; }
+      .champ-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { gap: 28px; }
+      .footer-top { flex-direction: column; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .galeria-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#inicio" class="nav-logo">
+        <img src="public/capa.png" alt="Logo" class="nav-logo-img" onerror="this.style.display='none'" />
+        PATCH<span>KINGSLEAGUE</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#uniformes">Uniformes</a></li>
+        <li><a href="#campeonatos">Campeonatos</a></li>
+        <li><a href="#planos">Planos</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <button id="cart-btn" onclick="openCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Carrinho
+          <span id="cart-badge"></span>
+        </button>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-nav">
+    <a href="#inicio" onclick="closeMobile()">Início</a>
+    <a href="#diferenciais" onclick="closeMobile()">Diferenciais</a>
+    <a href="#uniformes" onclick="closeMobile()">Uniformes</a>
+    <a href="#campeonatos" onclick="closeMobile()">Campeonatos</a>
+    <a href="#planos" onclick="closeMobile()">Planos</a>
+    <a href="#faq" onclick="closeMobile()">FAQ</a>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-scanlines"></div>
+
+    <div class="hero-image-wrap">
+      <img src="public/capa.png" alt="Kings League Patch" onerror="this.parentElement.style.display='none'" />
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>⚡ Patches ao vivo — Kings League e mais</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="glitch">KINGS LEAGUE</span>
+          <span class="line2">PATCH</span>
+        </h1>
+
+        <p class="hero-sub">
+          Enquanto os jogos oficiais ficam para trás, o Kings League Patch acompanha cada split em tempo real. Elencos atualizados, uniformes oficiais, escudos, faces realistas e toda a identidade da Kings League dentro do seu jogo.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#planos" class="btn-primary">
+            <i class="fa-solid fa-rocket"></i> Ver Planos
+          </a>
+          <button class="btn-secondary" onclick="openHow()">
+            <i class="fa-solid fa-play"></i> Como Funciona
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">4+</div>
+            <div class="hero-stat-label">Ligas suportadas</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-label">Jogadores atualizados</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Em dia com a realidade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALERIA HERO (Bola + Chuteiras) ================= -->
+  <div id="galeria-hero">
+    <div class="container">
+      <div class="galeria-strip-title">⚽ Veja o Patch em Ação</div>
+      <div class="galeria-strip">
+        <div class="strip-item reveal" onclick="openLightbox('public/Bola.png')">
+          <img src="public/Bola.png" alt="Bola oficial Kings League" />
+          <div class="strip-caption">Bola Oficial Kings League</div>
+        </div>
+        <div class="strip-item reveal reveal-delay-1" onclick="openLightbox('public/Chuteiras 1.png')">
+          <img src="public/Chuteiras 1.png" alt="Chuteiras 1" />
+          <div class="strip-caption">Chuteiras Nike</div>
+        </div>
+        <div class="strip-item reveal reveal-delay-2" onclick="openLightbox('public/Chuteiras 2.png')">
+          <img src="public/Chuteiras 2.png" alt="Chuteiras 2" />
+          <div class="strip-caption">Chuteiras Adidas F50</div>
+        </div>
+        <div class="strip-item reveal reveal-delay-3" onclick="openLightbox('public/Chuteiras 3.png')">
+          <img src="public/Chuteiras 3.png" alt="Chuteiras 3" />
+          <div class="strip-caption">Chuteiras em Ação</div>
+        </div>
+        <div class="strip-item reveal reveal-delay-4" onclick="openLightbox('public/Chuteiras 4.png')">
+          <img src="public/Chuteiras 4.png" alt="Chuteiras 4" />
+          <div class="strip-caption">Replay Exclusivo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DIFERENCIAIS ================= -->
+  <section id="diferenciais">
+    <div class="grid-bg"></div>
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Por que PatchKingsleague?</div>
+        <h2 class="section-title reveal">Nós jogamos no <span class="neon-text-yellow">outro nível</span></h2>
+        <p class="section-sub reveal">A gente não espera o patch oficial. A PatchKingsleague já tá na frente.</p>
+      </div>
+
+      <div class="diff-grid">
+        <div class="diff-card reveal">
+          <div class="diff-icon">⚡</div>
+          <h3 class="diff-title">Atualização em Tempo Real</h3>
+          <p class="diff-desc">Toda mudança nos campeonatos reflete nos seus arquivos. Transferência, uniforme novo, contratação — a gente tá de olho 24/7.</p>
+        </div>
+        <div class="diff-card reveal reveal-delay-1">
+          <div class="diff-icon">🏆</div>
+          <h3 class="diff-title">Ligas Incluídas no Patch</h3>
+          <p class="diff-desc">Kings League Brazil, Kings League World Cup, Kings League World Cup Nations, Kings League Spain. Todas completas e Atualizadas.</p>
+        </div>
+        <div class="diff-card reveal reveal-delay-2">
+          <div class="diff-icon">🎮</div>
+          <h3 class="diff-title">Compatível Apenas com PC</h3>
+          <p class="diff-desc">Adquira o jogo sem mesmo ter o Pes 2021, Ele vem incluído no Patch. 100% funcional no Windows.</p>
+        </div>
+        <div class="diff-card reveal reveal-delay-3">
+          <div class="diff-icon">🔒</div>
+          <h3 class="diff-title">Suporte e Comunidade VIP</h3>
+          <p class="diff-desc">Planos Pro e King têm suporte prioritário, acesso a novidades antes de todo mundo e uma comunidade exclusiva no Discord.</p>
+        </div>
+      </div>
+
+      <!-- BOTÃO VER MAIS -->
+      <div style="text-align:center; margin-top:52px;" class="reveal">
+        <button onclick="openGallery()" class="btn-ver-mais">
+          <i class="fa-solid fa-images"></i> Ver mais sobre o Patch
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY MODAL ================= -->
+  <div id="gallery-overlay" onclick="closeGalleryOverlay(event)">
+    <div class="gallery-modal">
+      <div class="gallery-modal-header">
+        <h3 class="gallery-modal-title">📸 Imagens do <span class="neon-text-yellow">Patch</span></h3>
+        <button class="gallery-close" onclick="closeGallery()" aria-label="Fechar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox('public/Bola.png')">
+          <img src="public/Bola.png" alt="Bola Kings League" />
+          <div class="gallery-caption">Bola Oficial Kings League</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Chuteiras 1.png')">
+          <img src="public/Chuteiras 1.png" alt="Chuteiras Nike" />
+          <div class="gallery-caption">Chuteiras Nike</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Chuteiras 2.png')">
+          <img src="public/Chuteiras 2.png" alt="Chuteiras Adidas" />
+          <div class="gallery-caption">Chuteiras Adidas F50 Elite</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Chuteiras 3.png')">
+          <img src="public/Chuteiras 3.png" alt="Chuteiras em ação" />
+          <div class="gallery-caption">Chuteiras em Ação</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Chuteiras 4.png')">
+          <img src="public/Chuteiras 4.png" alt="Replay chuteiras" />
+          <div class="gallery-caption">Replay — Detalhes</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Menu Abertura.png')">
+          <img src="public/Menu Abertura.png" alt="Menu Abertura" />
+          <div class="gallery-caption">Menu de Abertura</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Menu Principal.png')">
+          <img src="public/Menu Principal.png" alt="Menu Principal" />
+          <div class="gallery-caption">Menu Principal</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Nike.png')">
+          <img src="public/Nike.png" alt="Nike" />
+          <div class="gallery-caption">Nike</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Adidas.png')">
+          <img src="public/Adidas.png" alt="Adidas" />
+          <div class="gallery-caption">Adidas</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public/Umbro.png')">
+          <img src="public/Umbro.png" alt="Umbro" />
+          <div class="gallery-caption">Umbro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIFORMES CATÁLOGO ================= -->
+  <section id="uniformes">
+    <div class="grid-bg"></div>
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Catálogo Completo</div>
+        <h2 class="section-title reveal">Uniformes por <span class="neon-text-yellow">Seleção</span></h2>
+        <p class="section-sub reveal">Todos os times com uniformes oficiais dentro do jogo. Clique em uma seleção para ver os uniformes completos.</p>
+      </div>
+
+      <div class="team-tabs reveal">
+        <button class="team-tab active" onclick="showTeam('BRAZIL', this)">🇧🇷 Brazil</button>
+        <button class="team-tab" onclick="showTeam('CAPIM', this)">🌿 Capim</button>
+        <button class="team-tab" onclick="showTeam('DENDELE', this)">⚡ Dendele</button>
+        <button class="team-tab" onclick="showTeam('DESIMPAIN', this)">🎭 Desimpain</button>
+        <button class="team-tab" onclick="showTeam('DIBRADOS', this)">🎯 Dibrados</button>
+        <button class="team-tab" onclick="showTeam('FLUXO', this)">🌊 Fluxo</button>
+        <button class="team-tab" onclick="showTeam('FUNKBOL', this)">🎵 Funkbol</button>
+        <button class="team-tab" onclick="showTeam('FURIA', this)">🔥 Furia</button>
+        <button class="team-tab" onclick="showTeam('G3X', this)">🎮 G3X</button>
+        <button class="team-tab" onclick="showTeam('LOUD', this)">📢 Loud</button>
+        <button class="team-tab" onclick="showTeam('NYVELADOS', this)">⚖️ Nyvelados</button>
+      </div>
+
+      <!-- BRAZIL -->
+      <div class="team-panel active" id="panel-BRAZIL">
+        <div class="team-panel-title">🇧🇷 Brazil</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/BRAZIL/Screenshot 2026-05-25 062220.png')">
+            <img src="public/uniformes/BRAZIL/Screenshot 2026-05-25 062220.png" alt="Brazil Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/BRAZIL/Screenshot 2026-05-25 062238.png')">
+            <img src="public/uniformes/BRAZIL/Screenshot 2026-05-25 062238.png" alt="Brazil Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/BRAZIL/Screenshot 2026-05-25 062304.png')">
+            <img src="public/uniformes/BRAZIL/Screenshot 2026-05-25 062304.png" alt="Brazil Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPIM -->
+      <div class="team-panel" id="panel-CAPIM">
+        <div class="team-panel-title">🌿 Capim FC</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/CAPIM/Screenshot 2026-05-25 053524.png')">
+            <img src="public/uniformes/CAPIM/Screenshot 2026-05-25 053524.png" alt="Capim Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/CAPIM/Screenshot 2026-05-25 053839.png')">
+            <img src="public/uniformes/CAPIM/Screenshot 2026-05-25 053839.png" alt="Capim Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/CAPIM/Screenshot 2026-05-25 053906.png')">
+            <img src="public/uniformes/CAPIM/Screenshot 2026-05-25 053906.png" alt="Capim Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/CAPIM/Screenshot 2026-05-25 054021.png')">
+            <img src="public/uniformes/CAPIM/Screenshot 2026-05-25 054021.png" alt="Capim Uniforme 4" />
+            <div class="uniforme-label">Uniforme 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DENDELE -->
+      <div class="team-panel" id="panel-DENDELE">
+        <div class="team-panel-title">⚡ Dendele</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DENDELE/Screenshot 2026-05-25 054429.png')">
+            <img src="public/uniformes/DENDELE/Screenshot 2026-05-25 054429.png" alt="Dendele Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DENDELE/Screenshot 2026-05-25 054531.png')">
+            <img src="public/uniformes/DENDELE/Screenshot 2026-05-25 054531.png" alt="Dendele Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DENDELE/Screenshot 2026-05-25 054559.png')">
+            <img src="public/uniformes/DENDELE/Screenshot 2026-05-25 054559.png" alt="Dendele Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DENDELE/Screenshot 2026-05-25 054724.png')">
+            <img src="public/uniformes/DENDELE/Screenshot 2026-05-25 054724.png" alt="Dendele Uniforme 4" />
+            <div class="uniforme-label">Uniforme 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESIMPAIN -->
+      <div class="team-panel" id="panel-DESIMPAIN">
+        <div class="team-panel-title">🎭 Desimpain</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DESIMPAIN/Screenshot 2026-05-25 054915.png')">
+            <img src="public/uniformes/DESIMPAIN/Screenshot 2026-05-25 054915.png" alt="Desimpain Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DESIMPAIN/Screenshot 2026-05-25 054945.png')">
+            <img src="public/uniformes/DESIMPAIN/Screenshot 2026-05-25 054945.png" alt="Desimpain Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DESIMPAIN/Screenshot 2026-05-25 055010.png')">
+            <img src="public/uniformes/DESIMPAIN/Screenshot 2026-05-25 055010.png" alt="Desimpain Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIBRADOS -->
+      <div class="team-panel" id="panel-DIBRADOS">
+        <div class="team-panel-title">🎯 Dibrados</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DIBRADOS/Screenshot 2026-05-25 055428.png')">
+            <img src="public/uniformes/DIBRADOS/Screenshot 2026-05-25 055428.png" alt="Dibrados Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DIBRADOS/Screenshot 2026-05-25 055443.png')">
+            <img src="public/uniformes/DIBRADOS/Screenshot 2026-05-25 055443.png" alt="Dibrados Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DIBRADOS/Screenshot 2026-05-25 055510.png')">
+            <img src="public/uniformes/DIBRADOS/Screenshot 2026-05-25 055510.png" alt="Dibrados Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/DIBRADOS/Screenshot 2026-05-25 055715.png')">
+            <img src="public/uniformes/DIBRADOS/Screenshot 2026-05-25 055715.png" alt="Dibrados Uniforme 4" />
+            <div class="uniforme-label">Uniforme 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLUXO -->
+      <div class="team-panel" id="panel-FLUXO">
+        <div class="team-panel-title">🌊 Fluxo FC</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FLUXO/Screenshot 2026-05-25 060139.png')">
+            <img src="public/uniformes/FLUXO/Screenshot 2026-05-25 060139.png" alt="Fluxo Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FLUXO/Screenshot 2026-05-25 060203.png')">
+            <img src="public/uniformes/FLUXO/Screenshot 2026-05-25 060203.png" alt="Fluxo Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FLUXO/Screenshot 2026-05-25 060216.png')">
+            <img src="public/uniformes/FLUXO/Screenshot 2026-05-25 060216.png" alt="Fluxo Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FLUXO/Screenshot 2026-05-25 060308.png')">
+            <img src="public/uniformes/FLUXO/Screenshot 2026-05-25 060308.png" alt="Fluxo Uniforme 4" />
+            <div class="uniforme-label">Uniforme 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FUNKBOL -->
+      <div class="team-panel" id="panel-FUNKBOL">
+        <div class="team-panel-title">🎵 Funkbol</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FUNKBOL/Screenshot 2026-05-25 062029.png')">
+            <img src="public/uniformes/FUNKBOL/Screenshot 2026-05-25 062029.png" alt="Funkbol Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FUNKBOL/Screenshot 2026-05-25 062043.png')">
+            <img src="public/uniformes/FUNKBOL/Screenshot 2026-05-25 062043.png" alt="Funkbol Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FUNKBOL/Screenshot 2026-05-25 062101.png')">
+            <img src="public/uniformes/FUNKBOL/Screenshot 2026-05-25 062101.png" alt="Funkbol Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FURIA -->
+      <div class="team-panel" id="panel-FURIA">
+        <div class="team-panel-title">🔥 Furia</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FURIA/Screenshot 2026-05-25 060616.png')">
+            <img src="public/uniformes/FURIA/Screenshot 2026-05-25 060616.png" alt="Furia Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FURIA/Screenshot 2026-05-25 060659.png')">
+            <img src="public/uniformes/FURIA/Screenshot 2026-05-25 060659.png" alt="Furia Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FURIA/Screenshot 2026-05-25 060811.png')">
+            <img src="public/uniformes/FURIA/Screenshot 2026-05-25 060811.png" alt="Furia Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/FURIA/Screenshot 2026-05-25 060856.png')">
+            <img src="public/uniformes/FURIA/Screenshot 2026-05-25 060856.png" alt="Furia Uniforme 4" />
+            <div class="uniforme-label">Uniforme 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G3X -->
+      <div class="team-panel" id="panel-G3X">
+        <div class="team-panel-title">🎮 G3X</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/G3X/Screenshot 2026-05-25 061004.png')">
+            <img src="public/uniformes/G3X/Screenshot 2026-05-25 061004.png" alt="G3X Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/G3X/Screenshot 2026-05-25 061020.png')">
+            <img src="public/uniformes/G3X/Screenshot 2026-05-25 061020.png" alt="G3X Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/G3X/Screenshot 2026-05-25 061039.png')">
+            <img src="public/uniformes/G3X/Screenshot 2026-05-25 061039.png" alt="G3X Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/G3X/Screenshot 2026-05-25 061236.png')">
+            <img src="public/uniformes/G3X/Screenshot 2026-05-25 061236.png" alt="G3X Uniforme 4" />
+            <div class="uniforme-label">Uniforme 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOUD -->
+      <div class="team-panel" id="panel-LOUD">
+        <div class="team-panel-title">📢 Loud</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/LOUD/Screenshot 2026-05-25 061337.png')">
+            <img src="public/uniformes/LOUD/Screenshot 2026-05-25 061337.png" alt="Loud Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/LOUD/Screenshot 2026-05-25 061455.png')">
+            <img src="public/uniformes/LOUD/Screenshot 2026-05-25 061455.png" alt="Loud Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/LOUD/Screenshot 2026-05-25 061528.png')">
+            <img src="public/uniformes/LOUD/Screenshot 2026-05-25 061528.png" alt="Loud Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/LOUD/Screenshot 2026-05-25 061558.png')">
+            <img src="public/uniformes/LOUD/Screenshot 2026-05-25 061558.png" alt="Loud Uniforme 4" />
+            <div class="uniforme-label">Uniforme 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NYVELADOS -->
+      <div class="team-panel" id="panel-NYVELADOS">
+        <div class="team-panel-title">⚖️ Nyvelados</div>
+        <div class="uniforme-grid">
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/NYVELADOS/Screenshot 2026-05-25 061810.png')">
+            <img src="public/uniformes/NYVELADOS/Screenshot 2026-05-25 061810.png" alt="Nyvelados Uniforme 1" />
+            <div class="uniforme-label">Uniforme 1</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/NYVELADOS/Screenshot 2026-05-25 061830.png')">
+            <img src="public/uniformes/NYVELADOS/Screenshot 2026-05-25 061830.png" alt="Nyvelados Uniforme 2" />
+            <div class="uniforme-label">Uniforme 2</div>
+          </div>
+          <div class="uniforme-card" onclick="openLightbox('public/uniformes/NYVELADOS/Screenshot 2026-05-25 061900.png')">
+            <img src="public/uniformes/NYVELADOS/Screenshot 2026-05-25 061900.png" alt="Nyvelados Uniforme 3" />
+            <div class="uniforme-label">Uniforme 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TÉCNICOS ================= -->
+  <section id="tecnicos">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Conteúdo Exclusivo</div>
+        <h2 class="section-title reveal">Técnicos no <span class="neon-text-yellow">Patch</span></h2>
+        <p class="section-sub reveal">Veja como os técnicos aparecem dentro do jogo com o Kings League Patch instalado.</p>
+      </div>
+      <div class="tecnicos-video-wrap reveal">
+        <video controls preload="metadata">
+          <source src="public/Técnicos.mp4" type="video/mp4" />
+          <source src="public/Tecnicos.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeo HTML5.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAMPEONATOS ================= -->
+  <section id="campeonatos">
+    <div class="grid-bg"></div>
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Cobertura Total</div>
+        <h2 class="section-title reveal">Campeonatos <span class="neon-text-yellow">suportados</span></h2>
+        <p class="section-sub reveal">Todos atualizados em tempo real. Se mudou lá fora, mudou aqui também.</p>
+      </div>
+
+      <div class="champ-grid">
+        <div class="champ-card reveal">
+          <div class="champ-emblem">👑</div>
+          <div class="champ-name">Kings League</div>
+          <div class="champ-status active">Atualizado</div>
+        </div>
+        <div class="champ-card reveal reveal-delay-1">
+          <div class="champ-emblem">🌎</div>
+          <div class="champ-name">Kings World Cup</div>
+          <div class="champ-status active">Atualizado</div>
+        </div>
+        <div class="champ-card reveal reveal-delay-2">
+          <div class="champ-emblem">🌍</div>
+          <div class="champ-name">Kings World Cup Nations</div>
+          <div class="champ-status active">Atualizado</div>
+        </div>
+        <div class="champ-card reveal reveal-delay-3">
+          <div class="champ-emblem">🇧🇷</div>
+          <div class="champ-name">Kings League Brazil</div>
+          <div class="champ-status active">Atualizado</div>
+        </div>
+        <div class="champ-card reveal">
+          <div class="champ-emblem">🇪🇸</div>
+          <div class="champ-name">Kings League Spain</div>
+          <div class="champ-status active">Atualizado</div>
+        </div>
+        <div class="champ-card reveal reveal-delay-1">
+          <div class="champ-emblem">🚀</div>
+          <div class="champ-name">Novas Ligas</div>
+          <div class="champ-status" style="color:var(--gray)">Sempre chegando</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLANOS ================= -->
+  <section id="planos">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Escolha seu plano</div>
+        <h2 class="section-title reveal">Jogue no <span class="neon-text-yellow">próximo nível</span></h2>
+        <p class="section-sub reveal">Sem pegadinha, sem taxa oculta. Você escolhe, a gente entrega.</p>
+      </div>
+
+      <div class="plans-grid">
+
+        <!-- STARTER -->
+        <div class="plan-card reveal">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">
+            <span class="plan-currency">R$</span>
+            <span class="plan-amount">34</span>
+            <span style="font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--yellow)">,90</span>
+          </div>
+          <div class="plan-period">por mês</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-check"></i><span>Atualização apenas da competição atual</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Todas as Ligas</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Acesso à comunidade base</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Suporte via WhatsApp</span></li>
+          </ul>
+          <button id="btn-starter" class="btn-add-cart normal" onclick="addToCart('starter')">
+            <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
+          </button>
+        </div>
+
+        <!-- PRO (FEATURED) -->
+        <div class="plan-card featured reveal reveal-delay-1">
+          <div class="plan-badge">🔥 Mais Popular</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">
+            <span class="plan-currency">R$</span>
+            <span class="plan-amount">69</span>
+            <span style="font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--yellow)">,90</span>
+          </div>
+          <div class="plan-period">a cada 6 meses</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-check"></i><span>Atualizações por 6 meses ilimitadas</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Suporte prioritário</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Conteúdos exclusivos antecipados</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Todas as ligas</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Canal exclusivo no Discord</span></li>
+          </ul>
+          <button id="btn-pro" class="btn-add-cart highlighted" onclick="addToCart('pro')">
+            <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
+          </button>
+        </div>
+
+        <!-- KING -->
+        <div class="plan-card reveal reveal-delay-2">
+          <div class="plan-name">King</div>
+          <div class="plan-price">
+            <span class="plan-currency">R$</span>
+            <span class="plan-amount">149</span>
+            <span style="font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--yellow)">,90</span>
+          </div>
+          <div class="plan-period">por ano</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-check"></i><span>Suporte especial e instalação remota</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Acesso às versões beta antes de todos</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Cargo especial no Discord</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Prioridade máxima nas atualizações</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Participação em enquetes de conteúdo</span></li>
+          </ul>
+          <button id="btn-elite" class="btn-add-cart normal" onclick="addToCart('elite')">
+            <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Dúvidas Frequentes</div>
+        <h2 class="section-title reveal">Tá na cabeça? <span class="neon-text-yellow">A gente responde.</span></h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Como recebo os arquivos após a compra?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Enviamos um Link para você acessar e baixar seu patch. A gente também te explica como instalar passo a passo via WhatsApp.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Com que frequência os patches são atualizados?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Durante períodos em que a competição está em andamento, o patch recebe atualizações semanais, acompanhando transferências, mudanças de elenco, novos uniformes e demais novidades. Quando não há competições ativas, as atualizações são mensais.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Funciona em PS4, PS5 e PC?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Não. Atualmente, o Kings League Patch está disponível apenas para PC (Windows). Nos consoles (PS4 e PS5), a instalação e substituição desses arquivos é limitada pelo próprio sistema da plataforma, impedindo que o patch funcione da mesma forma que no PC. Por isso, para garantir a experiência completa, é necessário utilizar a versão de eFootball para PC (Windows).
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Posso trocar de plano depois?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Claro! Você pode fazer upgrade a qualquer momento — é só entrar em contato. O valor pago no plano atual é descontado proporcionalmente no upgrade. Não tem contrato longo nem multa. Aqui é tudo na base da confiança.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="public/capa.png" alt="Logo" class="footer-logo-img" onerror="this.style.display='none'" />
+            PATCH<span>KINGSLEAGUE</span>
+          </div>
+          <p class="footer-tagline">Enquanto o jogo oficial dorme, a gente tá atualizando. Sem parar.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/kingsleaguepatch_oficial?igsh=MWFiMHJrMTYycHFvOQ%3D%3D&utm_source=qr" target="_blank" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com/@patchkingsleagueoficial?si=iNEZK0QbBr1P_IiV" target="_blank" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://discord.gg/kDCFTKNGpt" target="_blank" class="social-btn" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://wa.me/5512991891100" target="_blank" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#diferenciais">Diferenciais</a></li>
+            <li><a href="#uniformes">Uniformes</a></li>
+            <li><a href="#campeonatos">Campeonatos</a></li>
+            <li><a href="#planos">Planos</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Planos</h4>
+          <ul>
+            <li><a href="#planos">Starter — R$ 34,90/mês</a></li>
+            <li><a href="#planos">Pro — R$ 69,90/semestre</a></li>
+            <li><a href="#planos">King — R$ 149,90/ano</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Contato & Redes</h4>
+          <ul>
+            <li><a href="https://wa.me/5512991891100" target="_blank"><i class="fa-brands fa-whatsapp"></i> +55 12 99189-1100</a></li>
+            <li><a href="https://www.instagram.com/kingsleaguepatch_oficial?igsh=MWFiMHJrMTYycHFvOQ%3D%3D&utm_source=qr" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+            <li><a href="https://youtube.com/@patchkingsleagueoficial?si=iNEZK0QbBr1P_IiV" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
+            <li><a href="https://discord.gg/kDCFTKNGpt" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 PatchKingsleague. Todos os direitos reservados.</p>
+        <p class="footer-tagline-bottom">⚽ Atualizando o jogo desde 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CART SIDEBAR ================= -->
+  <div id="cart-overlay" onclick="closeCart()"></div>
+  <div id="cart-sidebar">
+    <div class="cart-header">
+      <span class="cart-title"><i class="fa-solid fa-cart-shopping" style="color:var(--yellow);margin-right:8px;"></i> Carrinho</span>
+      <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-body" id="cart-body">
+      <div class="cart-empty" id="cart-empty">
+        <i class="fa-solid fa-box-open"></i>
+        <p>Seu carrinho tá vazio.<br>Escolha um plano e manda ver!</p>
+      </div>
+      <div id="cart-items"></div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none;">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-value" id="cart-total">R$ 0,00</span>
+      </div>
+      <button class="btn-whatsapp" onclick="finalizarPedido()">
+        <i class="fa-brands fa-whatsapp"></i>
+        Finalizar via WhatsApp
+      </button>
+      <p class="cart-note">Você será redirecionado para o WhatsApp com os detalhes do seu pedido.</p>
+    </div>
+  </div>
+
+  <!-- ================= HOW IT WORKS MODAL ================= -->
+  <div id="how-overlay" onclick="closeHow(event)">
+    <div class="how-modal">
+      <h3 class="how-title">Como funciona? <span class="neon-text-yellow">⚡</span></h3>
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-step-text">
+          <h4>Escolha seu plano</h4>
+          <p>Selecione o plano que mais combina com você — Starter, Pro ou King. Cada um tem seu nível de acesso e benefícios.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-step-text">
+          <h4>Finalize via WhatsApp</h4>
+          <p>Clique em "Finalizar via WhatsApp", uma mensagem já montada vai direto para o nosso chat. É só confirmar e pagar.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-step-text">
+          <h4>Receba os arquivos</h4>
+          <p>Confirmado o pagamento, enviamos os arquivos e o tutorial de instalação direto no WhatsApp. Simples assim.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <div class="how-step-text">
+          <h4>Jogue em dia com a realidade</h4>
+          <p>A cada atualização dos campeonatos, você recebe os novos arquivos automaticamente. Sempre na frente!</p>
+        </div>
+      </div>
+      <button class="btn-primary how-close" onclick="closeHow()">
+        <i class="fa-solid fa-rocket"></i> Quero começar agora
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= LIGHTBOX ================= -->
+  <div id="lightbox-overlay" onclick="closeLightbox()">
+    <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();lightboxNav(-1)" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="Preview" />
+    <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();lightboxNav(1)" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <!-- ================= FLOATING WA ================= -->
+  <a id="float-wa" href="https://wa.me/5512991891100" target="_blank" title="Falar no WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- ================= TOAST ================= -->
+  <div id="toast"></div>
+
+  <!-- ================= JS ================= -->
+  <script>
+    // ============================================
+    // NAVBAR SCROLL
+    // ============================================
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // ============================================
+    // MOBILE NAV
+    // ============================================
+    function toggleMobile() { document.getElementById('mobile-nav').classList.toggle('open'); }
+    function closeMobile() { document.getElementById('mobile-nav').classList.remove('open'); }
+
+    // ============================================
+    // SCROLL REVEAL
+    // ============================================
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+    // ============================================
+    // TEAM TABS (Uniformes)
+    // ============================================
+    function showTeam(team, btn) {
+      document.querySelectorAll('.team-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('panel-' + team).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // ============================================
+    // LIGHTBOX
+    // ============================================
+    let lightboxImages = [];
+    let currentLightboxIndex = 0;
+
+    function openLightbox(src) {
+      // Build image list from current context
+      const activePanel = document.querySelector('.team-panel.active');
+      if (activePanel) {
+        lightboxImages = Array.from(activePanel.querySelectorAll('img')).map(i => i.getAttribute('src'));
+      } else {
+        lightboxImages = [src];
+      }
+      currentLightboxIndex = lightboxImages.indexOf(src);
+      if (currentLightboxIndex === -1) { lightboxImages = [src]; currentLightboxIndex = 0; }
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-overlay').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox-overlay').classList.remove('open');
+    }
+
+    function lightboxNav(dir) {
+      if (lightboxImages.length < 2) return;
+      currentLightboxIndex = (currentLightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+      const img = document.getElementById('lightbox-img');
+      img.style.opacity = '0';
+      setTimeout(() => { img.src = lightboxImages[currentLightboxIndex]; img.style.opacity = '1'; }, 150);
+    }
+
+    document.getElementById('lightbox-img').style.transition = 'opacity 0.15s';
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('lightbox-overlay').classList.contains('open')) {
+        if (e.key === 'ArrowLeft') lightboxNav(-1);
+        if (e.key === 'ArrowRight') lightboxNav(1);
+        if (e.key === 'Escape') closeLightbox();
+      } else if (document.getElementById('gallery-overlay').classList.contains('open')) {
+        if (e.key === 'Escape') closeGallery();
+      }
+    });
+
+    // ============================================
+    // GALLERY MODAL
+    // ============================================
+    function openGallery() {
+      document.getElementById('gallery-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGallery() {
+      document.getElementById('gallery-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeGalleryOverlay(e) {
+      if (e.target === document.getElementById('gallery-overlay')) closeGallery();
+    }
+
+    // ============================================
+    // CART
+    // ============================================
+    const PLANS = {
+      starter: { id: 'starter', name: 'Plano Starter', period: 'Mensal', price: 34.90, emoji: '⚡' },
+      pro:     { id: 'pro',     name: 'Plano Pro',     period: 'Semestral', price: 69.90, emoji: '🔥' },
+      elite:   { id: 'elite',   name: 'Plano King',    period: 'Anual', price: 149.90, emoji: '👑' },
+    };
+    let cart = [];
+
+    function formatPrice(val) { return 'R$ ' + val.toFixed(2).replace('.', ','); }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cart-items');
+      const cartEmpty = document.getElementById('cart-empty');
+      const cartFooter = document.getElementById('cart-footer');
+      const badge = document.getElementById('cart-badge');
+      cartItems.innerHTML = '';
+      if (cart.length === 0) {
+        cartEmpty.style.display = 'flex'; cartFooter.style.display = 'none';
+        badge.classList.remove('visible'); badge.textContent = ''; return;
+      }
+      cartEmpty.style.display = 'none'; cartFooter.style.display = 'block';
+      badge.textContent = cart.length; badge.classList.add('visible');
+      let total = 0;
+      cart.forEach((item, idx) => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <div class="cart-item-icon">${item.emoji}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-sub">${item.period}</div>
+          </div>
+          <div class="cart-item-price">${formatPrice(item.price)}</div>
+          <button class="cart-item-remove" onclick="removeFromCart(${idx})"><i class="fa-solid fa-trash-can"></i></button>
+        `;
+        cartItems.appendChild(div);
+      });
+      document.getElementById('cart-total').textContent = formatPrice(total);
+    }
+
+    function addToCart(planId) {
+      const plan = PLANS[planId];
+      cart.push({ ...plan, instanceId: Date.now() });
+      updateCartUI();
+      showToast(`${plan.emoji} ${plan.name} adicionado!`);
+      openCart();
+    }
+
+    function removeFromCart(idx) { cart.splice(idx, 1); updateCartUI(); }
+
+    function openCart() {
+      document.getElementById('cart-sidebar').classList.add('open');
+      document.getElementById('cart-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCart() {
+      document.getElementById('cart-sidebar').classList.remove('open');
+      document.getElementById('cart-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ============================================
+    // WHATSAPP CHECKOUT
+    // ============================================
+    function finalizarPedido() {
+      if (cart.length === 0) return;
+      const total = cart.reduce((s, i) => s + i.price, 0);
+      const listaPlanos = cart.map(i => `• ${i.name} (${i.period}) — ${formatPrice(i.price)}`).join('\n');
+      const msg = `Olá! 👋 Vim pelo site da *PatchKingsleague* e quero finalizar meu pedido:\n\n${listaPlanos}\n\n💰 *Total: ${formatPrice(total)}*\n\nPode me passar as instruções de pagamento? 🚀`;
+      window.open(`https://wa.me/5512991891100?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // ============================================
+    // HOW IT WORKS MODAL
+    // ============================================
+    function openHow() { document.getElementById('how-overlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeHow(e) {
+      if (!e || e.target === document.getElementById('how-overlay') || !e.target.closest) {
+        document.getElementById('how-overlay').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    document.querySelector('.how-close').addEventListener('click', () => {
+      closeHow(); setTimeout(() => { window.location.href = '#planos'; }, 100);
+    });
+
+    // ============================================
+    // FAQ
+    // ============================================
+    function toggleFaq(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    }
+
+    // ============================================
+    // TOAST
+    // ============================================
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    // ============================================
+    // INIT
+    // ============================================
+    updateCartUI();
+  </script>
+</body>
+</html>
