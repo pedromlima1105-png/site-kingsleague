@@ -1,5 +1,5 @@
-# Arquivos grandes de vídeo e zip (excedem limite do GitHub 100MB)
-*.mp4
+# Arquivo gigante de vídeo que excede 100MB
+public/Entrada\ Completa.mp4
 *.zip
 *.rar
 *.7z
