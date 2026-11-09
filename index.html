@@ -785,30 +785,6 @@
     }
 
     /* ============================================
-       TÉCNICOS SECTION
-    ============================================ */
-    #tecnicos {
-      background: var(--bg);
-      position: relative;
-    }
-
-    .tecnicos-video-wrap {
-      max-width: 800px;
-      margin: 0 auto;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 0 40px rgba(255,214,0,0.1);
-    }
-    .tecnicos-video-wrap video {
-      width: 100%;
-      display: block;
-      max-height: 500px;
-      object-fit: contain;
-      background: #000;
-    }
-
-    /* ============================================
        CHAMPIONSHIPS
     ============================================ */
     #campeonatos {
@@ -1453,7 +1429,7 @@
         <div class="diff-card reveal reveal-delay-1">
           <div class="diff-icon">🏆</div>
           <h3 class="diff-title">Ligas Incluídas no Patch</h3>
-          <p class="diff-desc">Kings League Brazil, Kings League World Cup, Kings League World Cup Nations, Kings League Spain. Todas completas e Atualizadas.</p>
+          <p class="diff-desc">Kings League Brazil, Kings Cup Brazil, Kings World Cup Clubs, Kings World Cup Nation e Times de Fora.</p>
         </div>
         <div class="diff-card reveal reveal-delay-2">
           <div class="diff-icon">🎮</div>
@@ -1793,24 +1769,6 @@
     </div>
   </section>
 
-  <!-- ================= TÉCNICOS ================= -->
-  <section id="tecnicos">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag reveal">Conteúdo Exclusivo</div>
-        <h2 class="section-title reveal">Técnicos no <span class="neon-text-yellow">Patch</span></h2>
-        <p class="section-sub reveal">Veja como os técnicos aparecem dentro do jogo com o Kings League Patch instalado.</p>
-      </div>
-      <div class="tecnicos-video-wrap reveal">
-        <video controls preload="metadata">
-          <source src="public/Técnicos.mp4" type="video/mp4" />
-          <source src="public/Tecnicos.mp4" type="video/mp4" />
-          Seu navegador não suporta vídeo HTML5.
-        </video>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= CAMPEONATOS ================= -->
   <section id="campeonatos">
     <div class="grid-bg"></div>
@@ -1823,34 +1781,29 @@
 
       <div class="champ-grid">
         <div class="champ-card reveal">
-          <div class="champ-emblem">👑</div>
-          <div class="champ-name">Kings League</div>
-          <div class="champ-status active">Atualizado</div>
-        </div>
-        <div class="champ-card reveal reveal-delay-1">
-          <div class="champ-emblem">🌎</div>
-          <div class="champ-name">Kings World Cup Clubs</div>
-          <div class="champ-status active">Atualizado</div>
-        </div>
-        <div class="champ-card reveal reveal-delay-2">
-          <div class="champ-emblem">🌍</div>
-          <div class="champ-name">Kings World Cup Nations</div>
-          <div class="champ-status active">Atualizado</div>
-        </div>
-        <div class="champ-card reveal reveal-delay-3">
           <div class="champ-emblem">🇧🇷</div>
           <div class="champ-name">Kings League Brazil</div>
           <div class="champ-status active">Atualizado</div>
         </div>
-        <div class="champ-card reveal">
-          <div class="champ-emblem">🇪🇸</div>
-          <div class="champ-name">Kings League Spain</div>
+        <div class="champ-card reveal reveal-delay-1">
+          <div class="champ-emblem">🏆</div>
+          <div class="champ-name">Kings Cup Brazil</div>
           <div class="champ-status active">Atualizado</div>
         </div>
-        <div class="champ-card reveal reveal-delay-1">
-          <div class="champ-emblem">🚀</div>
-          <div class="champ-name">Novas Ligas</div>
-          <div class="champ-status" style="color:var(--gray)">Sempre chegando</div>
+        <div class="champ-card reveal reveal-delay-2">
+          <div class="champ-emblem">🌎</div>
+          <div class="champ-name">Kings World Cup Clubs</div>
+          <div class="champ-status active">Atualizado</div>
+        </div>
+        <div class="champ-card reveal reveal-delay-3">
+          <div class="champ-emblem">🌍</div>
+          <div class="champ-name">Kings World Cup Nation</div>
+          <div class="champ-status active">Atualizado</div>
+        </div>
+        <div class="champ-card reveal reveal-delay-4">
+          <div class="champ-emblem">⚽</div>
+          <div class="champ-name">Times de Fora</div>
+          <div class="champ-status active">Atualizado</div>
         </div>
       </div>
     </div>
@@ -1916,7 +1869,7 @@
           <div class="plan-name">King</div>
           <div class="plan-price">
             <span class="plan-currency">R$</span>
-            <span class="plan-amount">149</span>
+            <span class="plan-amount">84</span>
             <span style="font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--yellow)">,90</span>
           </div>
           <div class="plan-period">Vitalício</div>
@@ -2032,7 +1985,7 @@
           <ul>
             <li><a href="#planos">Starter — R$ 34,90/mês</a></li>
             <li><a href="#planos">Pro — R$ 69,90/semestre</a></li>
-            <li><a href="#planos">King — R$ 149,90/ano</a></li>
+            <li><a href="#planos">King — R$ 84,90/vitalício</a></li>
           </ul>
         </div>
 
@@ -2234,7 +2187,7 @@
     const PLANS = {
       starter: { id: 'starter', name: 'Plano Starter', period: 'Mensal', price: 34.90, emoji: '⚡' },
       pro:     { id: 'pro',     name: 'Plano Pro',     period: 'Semestral', price: 69.90, emoji: '🔥' },
-      elite:   { id: 'elite',   name: 'Plano King',    period: 'Vitalício', price: 149.90, emoji: '👑' },
+      elite:   { id: 'elite',   name: 'Plano King',    period: 'Vitalício', price: 84.90, emoji: '👑' },
     };
     let cart = [];
 
